@@ -1,1 +1,21 @@
-<a href="/details">Details</a>
+<div class="d-flex flex-column align-items-center vh-100 text-center pt-0">
+    <div class="mt-0">
+        <a href="details" class="d-block">Details</a>
+    </div>
+    <div class="col-6 mt-4">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>FirstName</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of nameAndEmailList">
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.email }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
