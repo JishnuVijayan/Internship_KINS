@@ -6,6 +6,7 @@ import {
 } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-name-details',
@@ -33,7 +34,7 @@ export class NameDetailsComponent implements OnInit {
 
     this.http
       .get<{ auth_token: string }>(
-        'https://www.universal-tutorial.com/api/getaccesstoken',
+        environment.new_api_url + '/getaccesstoken',
         { headers }
       )
       .subscribe(
@@ -53,7 +54,7 @@ export class NameDetailsComponent implements OnInit {
       Authorization: `Bearer ${this.authToken}`,
     });
     this.http
-      .get<any>('https://www.universal-tutorial.com/api/countries/', {
+      .get<any>(environment.new_api_url + '/countries/', {
         headers,
       })
       .subscribe(
@@ -71,10 +72,9 @@ export class NameDetailsComponent implements OnInit {
       Authorization: `Bearer ${this.authToken}`,
     });
     this.http
-      .get<any[]>(
-        `https://www.universal-tutorial.com/api/states/${countryName}`,
-        { headers }
-      )
+      .get<any[]>(environment.new_api_url + `/states/${countryName}`, {
+        headers,
+      })
       .subscribe(
         (response) => {
           this.states = response;
