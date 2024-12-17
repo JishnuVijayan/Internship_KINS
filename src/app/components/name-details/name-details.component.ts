@@ -1,10 +1,10 @@
+import { CommonModule } from '@angular/common';
 import {
   HttpClientModule,
   HttpClient,
   HttpHeaders,
 } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-name-details',
@@ -47,7 +47,7 @@ export class NameDetailsComponent implements OnInit {
 
   getCountries() {
     const headers = new HttpHeaders({
-      Authorization: 'Bearer ${this.authToken}',
+      Authorization: `Bearer ${this.authToken}`,
     });
     this.http
       .get<any>('https://www.universal-tutorial.com/api/countries/', {

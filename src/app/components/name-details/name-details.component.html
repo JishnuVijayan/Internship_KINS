@@ -1,8 +1,10 @@
 <div class="text-center">
     <a href="home">Home</a>
     <div class="text-center">
-        <select class="form-select" *ngFor="let item in countries">
-            <option>{{item}}</option>
-        </select>
+    <select class="form-select">
+        <option *ngFor="let item of countries" [value]="item.country_short_name">
+            {{ item.country_name }}
+        </option>
+    </select>
     </div>
 </div>
