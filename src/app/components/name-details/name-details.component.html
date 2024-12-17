@@ -1,10 +1,17 @@
 <div class="text-center">
     <a href="home">Home</a>
     <div class="text-center">
-    <select class="form-select">
-        <option *ngFor="let item of countries" [value]="item.country_short_name">
+    <select class="form-select" [(ngModel)]="selectedCountry" (change)="getStates(selectedCountry)">
+        <option *ngFor="let item of countries" [value]="item.country_name">
             {{ item.country_name }}
+            
         </option>
     </select>
     </div>
+</div>
+<p>{{selectedCountry}}</p>
+<div>
+    <ul>
+        <li *ngFor="let item of states">{{item.state_name}}</li>
+    </ul>
 </div>

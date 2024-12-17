@@ -5,16 +5,19 @@ import {
   HttpHeaders,
 } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-name-details',
-  imports: [HttpClientModule, CommonModule],
+  imports: [HttpClientModule, CommonModule, FormsModule],
   templateUrl: './name-details.component.html',
   styleUrls: ['./name-details.component.css'],
 })
 export class NameDetailsComponent implements OnInit {
   authToken: string = '';
   countries: any[] = [];
+  selectedCountry: string = '';
+  states: any[] = [];
 
   constructor(private http: HttpClient) {}
   ngOnInit(): void {
@@ -57,6 +60,25 @@ export class NameDetailsComponent implements OnInit {
         (response) => {
           this.countries = response;
           console.log(this.countries);
+        },
+        (error) => {
+          console.error('Error Fetching countires:', error);
+        }
+      );
+  }
+  getStates(countryName: string) {
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${this.authToken}`,
+    });
+    this.http
+      .get<any[]>(
+        `https://www.universal-tutorial.com/api/states/${countryName}`,
+        { headers }
+      )
+      .subscribe(
+        (response) => {
+          this.states = response;
+          console.log(this.states);
         },
         (error) => {
           console.error('Error Fetching countires:', error);
